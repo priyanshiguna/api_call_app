@@ -1,4 +1,4 @@
-import 'package:api_call_app/view/home/curd_opreation_screen.dart';
+import 'package:api_call_app/view/home/login_apicall_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CardOpreationScreen(),
+      home: const SignUpScreen(),
     );
   }
 }
