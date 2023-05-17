@@ -37,17 +37,18 @@ class _GetCharacterScreenState extends State<GetCharacterScreen> {
           ),
           if (singleCharacterModel != null)
             Expanded(
-                child: Center(
-              child: Column(
-                children: [
-                  // Image.network(singleCharacterModel!.image!),
-                  //  Text(singleCharacterModel!.name!),
-                  //  Text(singleCharacterModel!.gender!),
-                  //  Text(singleCharacterModel!.id!.toString()),
-                  Text(singleCharacterModel!.toJson().toString()),
-                ],
+              child: Center(
+                child: Column(
+                  children: [
+                    // Image.network(singleCharacterModel!.image!),
+                    //  Text(singleCharacterModel!.name!),
+                    //  Text(singleCharacterModel!.gender!),
+                    //  Text(singleCharacterModel!.id!.toString()),
+                    Text(singleCharacterModel!.toJson().toString()),
+                  ],
+                ),
               ),
-            )),
+            ),
         ],
       ),
     );
