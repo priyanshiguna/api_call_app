@@ -1,6 +1,6 @@
 class CharacterModel {
-  final Info? info;
-  final List<Results>? results;
+  Info? info;
+  List<Results>? results;
 
   CharacterModel({
     this.info,
