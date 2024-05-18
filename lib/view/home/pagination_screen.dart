@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../../model/new_model_screen.dart';
 
@@ -21,6 +22,7 @@ class _PaginationScreenState extends State<PaginationScreen> {
     // TODO: implement initState
     getApiCall();
     scrollController!.addListener(pagination);
+
     super.initState();
   }
 
@@ -63,28 +65,39 @@ class _PaginationScreenState extends State<PaginationScreen> {
   }
 
   getApiCall() async {
-    await dio
-        .get('https://rickandmortyapi.com/api/character?page=$page')
-        .then((value) {
-      debugPrint("value --->> $value");
-      if (value.statusCode == 200) {
-        if (page == 1) {
-          characterModel = NewCharacterModel.fromMap(value.data);
-        } else {
-          debugPrint(value.data["results"].toString());
-          for (var data in value.data["results"]) {
-            characterModel!.results!.add(Result.fromMap(data));
-          }
-          setState(() {});
-        }
+    // await dio
+    //     .get('https://rickandmortyapi.com/api/character?page=$page')
+    //     .then((value) {
+    //   debugPrint("value --->> $value");
+    //   if (value.statusCode == 200) {
+    //     if (page == 1) {
+    //       characterModel = NewCharacterModel.fromMap(value.data);
+    //     } else {
+    //       debugPrint(value.data["results"].toString());
+    //       for (var data in value.data["results"]) {
+    //         characterModel!.results!.add(Result.fromMap(data));
+    //       }
+    //       setState(() {});
+    //     }
+    //
+    //     if (page == characterModel!.info!.pages) {
+    //       scrollController!.removeListener(pagination);
+    //     }
+    //     setState(() {});
+    //   } else if (value.statusCode == 500) {
+    //     debugPrint("Server Not Connected");
+    //   }
+    // });
 
-        if (page == characterModel!.info!.pages) {
-          scrollController!.removeListener(pagination);
-        }
-        setState(() {});
-      } else if (value.statusCode == 500) {
-        debugPrint("Server Not Connected");
-      }
-    });
+    var request = http.Request(
+        'GET', Uri.parse('https://rickandmortyapi.com/api/character'));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
   }
 }

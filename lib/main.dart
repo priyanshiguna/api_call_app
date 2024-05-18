@@ -3,15 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 void main() {
-  //Remove this method to stop OneSignal Debugging
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
   OneSignal.initialize("7b066c89-e6e8-430d-8ff0-09b9ec3a704a");
-/*
-  "\'${jfjfjjfnjfnjfnj}\'"
-*/
 
-// The promptForPushNotificationsWithUserResponse function will show tdjdhe iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
   OneSignal.Notifications.requestPermission(true);
   final id = OneSignal.User.pushSubscription.id;
 
@@ -33,3 +28,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//sqlight database -- /*
+//   "\'${jfjfjjfnjfnjfnj}\'"
+// */
